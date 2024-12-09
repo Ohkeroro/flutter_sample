@@ -16,6 +16,7 @@ class MyContainer extends StatelessWidget {
           children: [
             container1(),
             container2(),
+            container3(),
           ],
         ),  
       )  
@@ -24,9 +25,9 @@ class MyContainer extends StatelessWidget {
   }//build
   Widget container1() => Container(
      color: Colors.purple.shade100,
-        height: 250,
+        height: 200,
         width: 300,
-        margin: const EdgeInsets.all(60),
+        margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.only(left: 80, top: 100),
         child: const Text("I'M R I C H",
                 style: TextStyle(fontSize: 30,
@@ -34,9 +35,9 @@ class MyContainer extends StatelessWidget {
   );
 
   Widget container2() => Container(
-    height: 200,width: 150,
-    margin: const EdgeInsets.all(50),
-    padding: const EdgeInsets.only(top:50, left: 10),
+    height: 200,width: 300,
+    margin: const EdgeInsets.all(10),
+    padding: const EdgeInsets.only(top:50, left: 80),
     //color: Colors.purple.shade100,
     decoration: BoxDecoration(
       color: Colors.black,
@@ -49,8 +50,22 @@ class MyContainer extends StatelessWidget {
       borderRadius: const BorderRadius.all(Radius.elliptical(50, 50))
     ),
     child: const Text('L O V E', 
-            style: TextStyle(color: Colors.white70,fontSize: 35, fontWeight: FontWeight.bold),),    
+            style: TextStyle(color: Colors.white70,fontSize: 35, fontWeight: FontWeight.bold,),),    
     
   );
+
+  Widget container3() => Container(
+    height: 200,width: 150,
+    margin: const EdgeInsets.all(10),
+    padding: const EdgeInsets.only(top:20, left: 20),
+    alignment: Alignment.center,
+    decoration: const BoxDecoration(
+      color: Colors.green,
+    shape: BoxShape.circle,
+    ),
+    child: const Text('MONEY' ,style: TextStyle(fontSize: 30,
+                fontWeight: FontWeight.bold)),
+  );
+
 
 }
