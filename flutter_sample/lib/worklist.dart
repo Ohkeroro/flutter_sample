@@ -10,8 +10,8 @@ class Worklist extends StatefulWidget {
 class _MyListviewPageState extends State<Worklist> {
   var subtitle = ['อู๋', 'ตั้น', 'เปา', 'น้ำ', 'นม'];
   var titleText = ['นายพัทธวี พงหนองพอก','เอกรัฐ ทะยะ','นายกิตติศักดิ์ แสงลือ','นายสิงห์ ลีโอ','นายชาย ชาตรี'];
-  var heights = ['170 cm', '165 cm', '180 cm', '175 cm', '168 cm'];
-  var weights = ['65 kg', '60 kg', '75 kg', '70 kg', '62 kg'];
+  var heights = ['165 cm', '175 cm', '175 cm', '175 cm', '168 cm'];
+  var weights = ['65 kg', '50 kg', '70 kg', '70 kg', '62 kg'];
   var favorites = ['ฟุตบอล','อ่านหนังสือ','เกม','เดินป่า','ถ่ายรูป'];
   var leadingIcon = [Icons.person,Icons.person,Icons.person,Icons.person,Icons.person];
 
