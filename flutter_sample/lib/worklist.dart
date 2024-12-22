@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class Worklist extends StatefulWidget {
@@ -10,80 +8,67 @@ class Worklist extends StatefulWidget {
 }
 
 class _MyListviewPageState extends State<Worklist> {
-  var rnd = Random();
-  var titleText = ['Star','Heart', 'Wi-Fi', 'Bluetooth', 'Gear'];
-  var leadingIcon = [Icons.star, Icons.favorite, Icons.wifi, Icons.bluetooth, Icons.settings];
+  var subtitle = ['อู๋', 'ตั้น', 'เปา', 'น้ำ', 'นม'];
+  var titleText = ['นายพัทธวี พงหนองพอก','เอกรัฐ ทะยะ','นายกิตติศักดิ์ แสงลือ','นายสิงห์ ลีโอ','นายชาย ชาตรี'];
+  var heights = ['170 cm', '165 cm', '180 cm', '175 cm', '168 cm'];
+  var weights = ['65 kg', '60 kg', '75 kg', '70 kg', '62 kg'];
+  var favorites = ['ฟุตบอล','อ่านหนังสือ','เกม','เดินป่า','ถ่ายรูป'];
+  var leadingIcon = [Icons.person,Icons.person,Icons.person,Icons.person,Icons.person];
 
-  var switchWifi = true;
-  var switchBluetooth = false;
-  
   @override
-  Widget build(BuildContext context) => Scaffold( 
-    appBar: AppBar(title: const Text('Listview'), centerTitle: true,),
-    body: ListView.separated(
-      padding: const EdgeInsets.all(20),
-      itemCount: titleText.length,
-      itemBuilder: (context,index)=>buildlistItem(context, index), 
-      separatorBuilder: (contex, index) => const Divider(
-        thickness: 1,
-        color: Colors.blueGrey,
-        indent: 10,
-        endIndent: 10,
-      ), 
-      )
-  );
-  Widget buildlistItem(BuildContext ctx, int index) {
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: const Text('รายชื่อเพื่อนที่สนิท'),
+          centerTitle: true,
+        ),
+        body: ListView.separated(
+          padding: const EdgeInsets.all(20),
+          itemCount: titleText.length,
+          itemBuilder: (context, index) => buildListItem(context, index),
+          separatorBuilder: (context, index) => const Divider(
+            thickness: 1,
+            color: Colors.blueGrey,
+            indent: 10,
+            endIndent: 10,
+          ),
+        ),
+      );
+
+  Widget buildListItem(BuildContext ctx, int index) {
     return ListTile(
-      leading: Icon(leadingIcon[index], size: 36,),
+      leading: Icon(
+        leadingIcon[index],
+        size: 36,
+      ),
       title: Text(titleText[index]),
-      subtitle: Text('\$${rnd.nextInt(50)+10}'),
-      trailing: trailingWidget(ctx, index),
+      subtitle: Text(subtitle[index]),
+      trailing: const Icon(Icons.arrow_forward_ios),
       iconColor: Colors.deepPurple,
-      onTap: ()=>myAlert(ctx, 'เปิดดูรายการ ${titleText[index]}'),
+      onTap: () => showDetailsDialog(ctx, index),
     );
   }
-  Widget trailingWidget(BuildContext ctx, int index){
-    var widget = <Widget>[
-      const Icon(Icons.arrow_forward_ios),
-      InkWell(
-        child: const Icon(Icons.shopping_cart),
-        onTap: ()=>myAlert(ctx, 'ได้หยิบ ${titleText[index]} ใส่รถเข็นแล้ว'),
-      ),
-      Switch(
-        value: switchWifi,
-        onChanged: (isOn) => setState(() {
-          switchWifi = isOn;
-          var msg = (isOn)?'เปิด':'ปิด';
-          myAlert(ctx, '${titleText[index]}: $msg');
-        }),
-      ),
-      Switch(
-        value: switchBluetooth,
-        onChanged: (isOn) => setState(() {
-          switchBluetooth = isOn;
-          var msg = (isOn)?'เปิด':'ปิด';
-          myAlert(ctx, '${titleText[index]}: $msg');
-        }),
-      ),
-      InkWell(
-        child: const Icon(Icons.shopping_cart),
-        onTap: (){},
-      ),
-    ];
-    return widget[index];
-  }
-    void myAlert(BuildContext ctx, String txt){
-      showDialog(
-        context: ctx,
-        builder: (ctx) => AlertDialog(
-          content: Text(txt),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(ctx).pop(), 
-              child: const Text('OK'))
+
+  void showDetailsDialog(BuildContext ctx, int index) {
+    showDialog(
+      context: ctx,
+      builder: (ctx) => AlertDialog(
+        title: Text(titleText[index]),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('ส่วนสูง: ${heights[index]}'),
+            Text('น้ำหนัก: ${weights[index]}'),
+            Text('สิ่งที่ชอบ: ${favorites[index]}'),
           ],
-        )
-      );
-      
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 }
