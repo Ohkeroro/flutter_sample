@@ -76,7 +76,7 @@ class centerRow extends StatelessWidget {
 }
 
 class centercolumn extends StatelessWidget {
-  const centercolumn({super.key});
+  const centercolumn(Icon icon, Icon icon1, Icon icon2, Icon icon3, Icon icon4, Text text, {super.key});
 
   @override
   Widget build(BuildContext context) {
